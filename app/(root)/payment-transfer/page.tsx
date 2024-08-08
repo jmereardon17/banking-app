@@ -1,5 +1,5 @@
 import HeaderBox from '@/components/HeaderBox';
-import PaymentTransferForm from '@/components/PaymentTransferForm';
+import PaymentTransferForm from '@/components/forms/PaymentTransferForm';
 import { getAccounts } from '@/lib/actions/bank.actions';
 import { getLoggedInUser } from '@/lib/actions/user.actions';
 
@@ -9,7 +9,7 @@ const Transfer = async () => {
 
   if (!accounts) return;
 
-  const accountsData = accounts?.data;
+  const accountsData = accounts.data;
 
   return (
     <section className="payment-transfer">

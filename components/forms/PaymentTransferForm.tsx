@@ -12,11 +12,11 @@ import { createTransaction } from '@/lib/actions/transaction.actions';
 import { getBank, getBankByAccountId } from '@/lib/actions/user.actions';
 import { decryptId } from '@/lib/utils';
 
-import { BankDropdown } from './BankDropdown';
-import { Button } from './ui/button';
-import { Form, FormControl, FormDescription, FormField, FormItem, FormLabel, FormMessage } from './ui/form';
-import { Input } from './ui/input';
-import { Textarea } from './ui/textarea';
+import { BankDropdown } from '../BankDropdown';
+import { Button } from '../ui/button';
+import { Form, FormControl, FormDescription, FormField, FormItem, FormLabel, FormMessage } from '../ui/form';
+import { Input } from '../ui/input';
+import { Textarea } from '../ui/textarea';
 
 const formSchema = z.object({
   email: z.string().email('Invalid email address'),
@@ -56,6 +56,7 @@ const PaymentTransferForm = ({ accounts }: PaymentTransferFormProps) => {
         destinationFundingSourceUrl: receiverBank.fundingSourceUrl,
         amount: data.amount
       };
+
       // create transfer
       const transfer = await createTransfer(transferParams);
 
@@ -88,7 +89,6 @@ const PaymentTransferForm = ({ accounts }: PaymentTransferFormProps) => {
   return (
     <Form {...form}>
       <form onSubmit={form.handleSubmit(submit)} className="flex flex-col">
-        TODO: refactor this to use custom component
         <FormField
           control={form.control}
           name="senderBank"

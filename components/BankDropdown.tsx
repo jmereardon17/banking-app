@@ -17,12 +17,12 @@ import { formUrlQuery, formatAmount } from '@/lib/utils';
 export const BankDropdown = ({ accounts = [], setValue, otherStyles }: BankDropdownProps) => {
   const searchParams = useSearchParams();
   const router = useRouter();
-  const [selected, setSeclected] = useState(accounts[0]);
+  const [selected, setSelected] = useState(accounts[0]);
 
-  const handleBankChange = (id: string) => {
+  const handleSelectBank = (id: string) => {
     const account = accounts.find(account => account.appwriteItemId === id)!;
 
-    setSeclected(account);
+    setSelected(account);
     const newUrl = formUrlQuery({
       params: searchParams.toString(),
       key: 'id',
@@ -30,13 +30,11 @@ export const BankDropdown = ({ accounts = [], setValue, otherStyles }: BankDropd
     });
     router.push(newUrl, { scroll: false });
 
-    if (setValue) {
-      setValue('senderBank', id);
-    }
+    if (setValue) setValue('senderBank', id);
   };
 
   return (
-    <Select defaultValue={selected.id} onValueChange={value => handleBankChange(value)}>
+    <Select defaultValue={selected.id} onValueChange={value => handleSelectBank(value)}>
       <SelectTrigger className={`flex w-full bg-white gap-3 md:w-[300px] ${otherStyles}`}>
         <Image src="icons/credit-card.svg" width={20} height={20} alt="account" />
         <p className="line-clamp-1 w-full text-left">{selected.name}</p>

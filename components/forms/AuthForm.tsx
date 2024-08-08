@@ -10,19 +10,19 @@ import { useForm } from 'react-hook-form';
 
 import { Button } from '@/components/ui/button';
 import { Form } from '@/components/ui/form';
-import CustomInput from './CustomInput';
-import { authFormSchema } from '@/lib/utils';
+import CustomInput from '../CustomInput';
+import { getFormSchema } from '@/lib/utils';
 import { Loader2 } from 'lucide-react';
 import { useRouter } from 'next/navigation';
 import { signIn, signUp } from '@/lib/actions/user.actions';
-import PlaidLink from './PlaidLink';
+import PlaidLink from '../PlaidLink';
 
 const AuthForm = ({ type }: { type: string }) => {
   const router = useRouter();
   const [user, setUser] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
 
-  const formSchema = authFormSchema(type);
+  const formSchema = getFormSchema(type);
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
@@ -52,8 +52,7 @@ const AuthForm = ({ type }: { type: string }) => {
       if (type === 'sign-up') {
         const newUser = await signUp(userData);
         setUser(newUser);
-      }
-      if (type === 'sign-in') {
+      } else {
         const res = await signIn({ email: data.email, password: data.password });
         if (res) router.push('/');
       }

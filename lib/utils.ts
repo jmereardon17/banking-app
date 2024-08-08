@@ -179,9 +179,12 @@ export const getTransactionStatus = (date: Date) => {
   return date > twoDaysAgo ? 'Processing' : 'Success';
 };
 
-export const authFormSchema = (type: string) =>
+export const getFormSchema = (type: string) =>
   z.object({
-    // sign up
+    // Global
+    email: z.string().email(),
+    password: z.string().min(8),
+    // Sign up
     firstName: type === 'sign-in' ? z.string().optional() : z.string().min(3),
     lastName: type === 'sign-in' ? z.string().optional() : z.string().min(3),
     address1: type === 'sign-in' ? z.string().optional() : z.string().max(50),
@@ -190,7 +193,11 @@ export const authFormSchema = (type: string) =>
     postalCode: type === 'sign-in' ? z.string().optional() : z.string().min(3).max(6),
     dateOfBirth: type === 'sign-in' ? z.string().optional() : z.string().min(3),
     ssn: type === 'sign-in' ? z.string().optional() : z.string().min(3),
-    // both
-    email: z.string().email(),
-    password: z.string().min(8)
+    // Transfer
+    name: type === 'transfer' ? z.string() : z.string().optional(),
+    amount: type === 'transfer' ? z.string().min(4, 'Amount is too short') : z.string().optional(),
+    senderBank:
+      type === 'transfer' ? z.string().min(4, 'Please select a valid bank account') : z.string().optional(),
+    sharableId:
+      type === 'transfer' ? z.string().min(8, 'Please select a valid sharable Id') : z.string().optional()
   });
