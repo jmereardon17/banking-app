@@ -17,7 +17,7 @@ const CategoryBadge = ({ category }: CategoryBadgeProps) => {
 
 const TransactionsTable = ({ transactions }: TransactionTableProps) => (
   <Table>
-    <TableHeader className="bg-[#f9fafb]">
+    <TableHeader className="bg-[#344054] bg-opacity-40">
       <TableRow>
         <TableHead className="px-2">Transaction</TableHead>
         <TableHead className="px-2">Amount</TableHead>
@@ -36,23 +36,16 @@ const TransactionsTable = ({ transactions }: TransactionTableProps) => (
         const isCredit = t.type === 'credit';
 
         return (
-          <TableRow
-            key={t.id}
-            className={`${
-              isDebit || amount[0] === '-' ? 'bg-[#fffbfa]' : 'bg-[#f6fef9]'
-            } !over:bg-none !border-b-DEFAULT`}
-          >
+          <TableRow key={t.id}>
             <TableCell className="max-w-[250px] pl-2 pr-10">
               <div className="flex items-center gap-3">
-                <h1 className="text-14 truncate font-semibold text-[#344054]">
-                  {removeSpecialCharacters(t.name)}
-                </h1>
+                <h1 className="text-14 truncate font-semibold !text-white">{removeSpecialCharacters(t.name)}</h1>
               </div>
             </TableCell>
 
             <TableCell
               className={`pl-2 pr-10 font-semibold ${
-                isDebit || amount[0] === '-' ? 'text-[#f04438]' : 'text-[#039855]'
+                isDebit || amount[0] === '-' ? 'text-[#f04438]' : 'text-[#25b373]'
               }`}
             >
               {isDebit ? `-${amount}` : isCredit ? amount : amount}
