@@ -34,7 +34,7 @@ export const Pagination = ({ page, totalPages }: PaginationProps) => {
         <Image src="/icons/arrow-left.svg" alt="arrow" width={20} height={20} className="mr-2" />
         Prev
       </Button>
-      <p className="text-14 flex items-center px-2">
+      <p className="text-14 text-gray-500 flex items-center px-2">
         {page} / {totalPages}
       </p>
       <Button
