@@ -271,7 +271,7 @@
 
   /* Auth */
   .auth-asset {
-    @apply flex h-screen w-full sticky top-0 items-center justify-end max-lg:hidden;
+    @apply flex h-screen w-full bg-[#121a2b] sticky top-0 items-center justify-end max-lg:hidden;
   }
 
   /* Auth Form */
