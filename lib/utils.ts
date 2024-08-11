@@ -183,19 +183,46 @@ export const getFormSchema = (type: string) =>
   z.object({
     // Global
     email: z.string().email(),
-    password: z.string().min(8),
+    password: z.string().min(8, { message: 'Must be at least 8 characters' }),
     // Sign up
-    firstName: type === 'sign-in' ? z.string().optional() : z.string().min(3),
-    lastName: type === 'sign-in' ? z.string().optional() : z.string().min(3),
-    address1: type === 'sign-in' ? z.string().optional() : z.string().max(50),
-    city: type === 'sign-in' ? z.string().optional() : z.string().max(50),
-    state: type === 'sign-in' ? z.string().optional() : z.string().min(2).max(2),
-    postalCode: type === 'sign-in' ? z.string().optional() : z.string().min(3).max(6),
-    dateOfBirth: type === 'sign-in' ? z.string().optional() : z.string().min(3),
-    ssn: type === 'sign-in' ? z.string().optional() : z.string().min(3),
+    firstName:
+      type === 'sign-in' ? z.string().optional() : z.string().min(3, { message: 'Must be at least 3 characters' }),
+    lastName:
+      type === 'sign-in' ? z.string().optional() : z.string().min(3, { message: 'Must be at least 3 characters' }),
+    address1:
+      type === 'sign-in'
+        ? z.string().optional()
+        : z.string().max(50, { message: 'Must be a max of 50 characters' }),
+    city:
+      type === 'sign-in'
+        ? z.string().optional()
+        : z.string().max(50, { message: 'Must be a max of 50 characters' }),
+    state:
+      type === 'sign-in'
+        ? z.string().optional()
+        : z
+            .string()
+            .min(2, { message: 'Must be at least 2 characters' })
+            .max(2, { message: 'Must be a max of 2 characters' }),
+    postalCode:
+      type === 'sign-in'
+        ? z.string().optional()
+        : z
+            .string()
+            .min(3, { message: 'Must be at least 3 characters' })
+            .max(6, { message: 'Must be a max of 6 characters' }),
+    dateOfBirth:
+      type === 'sign-in'
+        ? z.string().optional()
+        : z
+            .string()
+            .min(3, { message: 'Must be at least 10 characters' })
+            .regex(/^\d{4}-\d{2}-\d{2}$/, { message: 'Must match the format: yyyy-mm-dd' }),
+    ssn:
+      type === 'sign-in' ? z.string().optional() : z.string().min(3, { message: 'Must be at least 3 characters' }),
     // Transfer
     name: type === 'transfer' ? z.string() : z.string().optional(),
-    amount: type === 'transfer' ? z.string().min(4, 'Amount is too short') : z.string().optional(),
+    amount: type === 'transfer' ? z.string().min(4, 'Must be at least 4 numbers') : z.string().optional(),
     senderBank:
       type === 'transfer' ? z.string().min(4, 'Please select a valid bank account') : z.string().optional(),
     sharableId:
