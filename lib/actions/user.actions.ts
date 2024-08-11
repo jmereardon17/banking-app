@@ -61,7 +61,7 @@ export const signUp = async ({ password, ...userData }: SignUpParams) => {
   let newUserAccount;
 
   try {
-    const { account, database } = await createAdminClient();
+    const { account, database, user } = await createAdminClient();
 
     newUserAccount = await account.create(ID.unique(), email, password, `${firstName} ${lastName}`);
 
@@ -72,7 +72,10 @@ export const signUp = async ({ password, ...userData }: SignUpParams) => {
       type: 'personal'
     });
 
-    if (!dwollaCustomerUrl) throw new Error('Error creating Dwolla customer');
+    if (!dwollaCustomerUrl) {
+      await user.delete(newUserAccount.$id);
+      throw new Error('Error creating Dwolla customer');
+    }
 
     const dwollaCustomerId = extractCustomerIdFromUrl(dwollaCustomerUrl);
 

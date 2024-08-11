@@ -21,6 +21,7 @@ const AuthForm = ({ type }: { type: string }) => {
   const router = useRouter();
   const [user, setUser] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState('');
 
   const formSchema = getFormSchema(type);
 
@@ -51,7 +52,12 @@ const AuthForm = ({ type }: { type: string }) => {
 
       if (type === 'sign-up') {
         const newUser = await signUp(userData);
-        setUser(newUser);
+
+        if (!newUser) {
+          setError('There was an error creating your account - please try again');
+        } else {
+          setUser(newUser);
+        }
       } else {
         const res = await signIn({ email: data.email, password: data.password });
         if (res) router.push('/');
@@ -90,6 +96,7 @@ const AuthForm = ({ type }: { type: string }) => {
             <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
               {type === 'sign-up' && (
                 <>
+                  {error && <div className="font-bold text-sm text-red-500">{error}</div>}
                   <div className="flex gap-4">
                     <CustomInput
                       control={form.control}
