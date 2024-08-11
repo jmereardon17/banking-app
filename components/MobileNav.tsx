@@ -17,10 +17,10 @@ const MobileNav = ({ user }: MobileNavProps) => {
         <SheetTrigger>
           <Image src="/icons/hamburger.svg" width={30} height={30} alt="menu" className="cursor-pointer" />
         </SheetTrigger>
-        <SheetContent side="left" className="border-none bg-white">
+        <SheetContent side="left" className="bg-[#101727] border-[#344054]">
           <Link href="/" className="cursor-pointer flex items-center gap-1 px-4">
-            <Image src="/icons/logo.svg" width={34} height={34} alt="logo" />
-            <h1 className="text-19 font-ibm-plex-serif font-bold !text-white">BankApp</h1>
+            <Image src="/icons/logo.png" width={34} height={34} alt="logo" />
+            <h1 className="text-24 font-ibm-plex-serif font-bold !text-white">BankApp</h1>
           </Link>
 
           <div className="mobilenav-sheet">
