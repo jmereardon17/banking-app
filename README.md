@@ -6,7 +6,7 @@ Built with: JavaScript, TypeScript, React, Next.JS 14, Appwrite, Plaid, Dwolla, 
 
 [Demo](https://banking-app-with-dwolla-and-plaid.vercel.app)
 
-## Local Development
+## Setup
 
 create an `.env` file in the root directory using the example `.env.example` template for the variables the app uses. `NEXT_PUBLIC_SITE_URL` can be replaced with a live URL if the app is to be deployed. Setup a project within Appwrite, Plaid, and Dwolla, then copy the relevant data to their corresponding environment variable.
 
