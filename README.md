@@ -12,17 +12,17 @@ create an `.env` file in the root directory using the example `.env.example` tem
 
 For the database setup within Appwrite, create a database containing three collections:
 
-| banks                                                      | transactions                     | users                                   |
-| ---------------------------------------------------------- | -------------------------------- | --------------------------------------- |
-| `accountId` (string) - Required                            | `name` (string) - Required       | `email` (email) - Required              |
-| `bankId` (string) - Required                               | `amount` (string) - Required     | `userId` (string) - Required            |
-| `accessToken` (string) - Required                          | `channel` (string) - Required    | `dwollaCustomerUrl` (string) - Required |
-| `fundingSourceUrl` (string) - Required                     | `category` (string) - Required   | `dwollaCustomerId` (string) - Required  |
-| `shareableId` (string) - Required                          | `senderId` (string) - Required   | `firstName` (string) - Required         |
-| `userId` Many to one Relationship with `userId` from users | `receiverId` (string) - Required | `lastName` (string) - Required          |
-| `userId` Many to one Relationship with `userId` from users | `receiverId` (string) - Required | `address1` (string) - Required          |
-| `userId` Many to one Relationship with `userId` from users | `receiverId` (string) - Required | `city` (string) - Required              |
-| `userId` Many to one Relationship with `userId` from users | `receiverId` (string) - Required | `ssn` (string) - Required               |
-| `userId` Many to one Relationship with `userId` from users | `receiverId` (string) - Required | `postalCode` (string) - Required        |
-| `userId` Many to one Relationship with `userId` from users | `receiverId` (string) - Required | `dateOfBirth` (string) - Required       |
-| `userId` Many to one Relationship with `userId` from users | `receiverId` (string) - Required | `state` (string) - Required             |
+| banks                                                      | transactions                         | users                                   |
+| ---------------------------------------------------------- | ------------------------------------ | --------------------------------------- |
+| `accountId` (string) - Required                            | `name` (string) - Required           | `email` (email) - Required              |
+| `bankId` (string) - Required                               | `amount` (string) - Required         | `userId` (string) - Required            |
+| `accessToken` (string) - Required                          | `channel` (string) - Required        | `dwollaCustomerUrl` (string) - Required |
+| `fundingSourceUrl` (string) - Required                     | `category` (string) - Required       | `dwollaCustomerId` (string) - Required  |
+| `shareableId` (string) - Required                          | `senderId` (string) - Required       | `firstName` (string) - Required         |
+| `userId` Many to one Relationship with `userId` from users | `receiverId` (string) - Required     | `lastName` (string) - Required          |
+|                                                            | `senderBankId` (string) - Required   | `address1` (string) - Required          |
+|                                                            | `receiverBankId` (string) - Required | `city` (string) - Required              |
+|                                                            | `email` (string) - Required          | `ssn` (string) - Required               |
+|                                                            |                                      | `postalCode` (string) - Required        |
+|                                                            |                                      | `dateOfBirth` (string) - Required       |
+|                                                            |                                      | `state` (string) - Required             |
