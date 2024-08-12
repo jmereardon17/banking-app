@@ -76,7 +76,6 @@ export const getAccount = async ({ appwriteItemId }: getAccountProps) => {
     const accountData = accountsResponse.data.accounts[0];
 
     // get transfer transactions from appwrite
-    // FIXME: this doesn't work when transfers dont exist yet
     const transferTransactionsData = await getTransactionsByBankId({
       bankId: bank.$id
     });
@@ -117,10 +116,6 @@ export const getAccount = async ({ appwriteItemId }: getAccountProps) => {
     const allTransactions = [...transactions, ...transferTransactions].sort(
       (a, b) => new Date(b.date).getTime() - new Date(a.date).getTime()
     );
-
-    // const allTransactions = [...transactions].sort(
-    //   (a, b) => new Date(b.date).getTime() - new Date(a.date).getTime()
-    // );
 
     return parseStringify({
       data: account,
